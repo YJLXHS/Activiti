@@ -24,7 +24,6 @@ import org.activiti.api.model.shared.model.VariableInstance;
 import org.activiti.api.process.model.ProcessInstance;
 import org.activiti.api.process.model.builders.ProcessPayloadBuilder;
 import org.activiti.api.process.runtime.ProcessRuntime;
-import org.activiti.engine.RuntimeService;
 import org.activiti.spring.boot.security.util.SecurityUtil;
 import org.activiti.spring.boot.test.util.ProcessCleanUpUtil;
 import org.junit.jupiter.api.AfterEach;
@@ -44,9 +43,6 @@ public class ProcessRuntimeConnectorIT {
 
     @Autowired
     private ProcessRuntime processRuntime;
-
-    @Autowired
-    private RuntimeService runtimeService;
 
     @Autowired
     private SecurityUtil securityUtil;
@@ -72,17 +68,16 @@ public class ProcessRuntimeConnectorIT {
     @Test
     public void shouldConnectorMatchWithConnectorDefinition() {
 
-        ProcessInstance processInstance = processRuntime.start(ProcessPayloadBuilder.start()
-            .withProcessDefinitionKey(CATEGORIZE_IMAGE_CONNECTORS_PROCESS)
-            .withVariable("input_variable_name_1",
-                "input-variable-name-1")
-            .withVariable("input_variable_name_2",
-                "input-variable-name-2")
-            .withVariable("expectedKey",
-                true)
-            .build());
 
-        assertThat(processInstance).isNotNull();
+        processRuntime.start(ProcessPayloadBuilder.start()
+                .withProcessDefinitionKey(CATEGORIZE_IMAGE_CONNECTORS_PROCESS)
+                .withVariable("input_variable_name_1",
+                        "input-variable-name-1")
+                .withVariable("input_variable_name_2",
+                        "input-variable-name-2")
+                .withVariable("expectedKey",
+                        true)
+                .build());
 
     }
 

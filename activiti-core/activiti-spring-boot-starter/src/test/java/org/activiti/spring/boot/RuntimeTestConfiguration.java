@@ -173,9 +173,7 @@ public class RuntimeTestConfiguration {
             integrationContext.addOutBoundVariable("approved",
                                                    expectedValue);
             assertThat(((String) inBoundVariables.get("input_variable_name_1"))).isEqualTo("input-variable-name-1");
-
-            throw new RuntimeException("rollback");
-//            return integrationContext;
+            return integrationContext;
         };
     }
 
